@@ -13,10 +13,11 @@ app.use(express.json());
 
 // routers go here
 const itemRouter = require('./Routes/itemRoute');
-
+const pantryRouter = require('./Routes/pantryItemRoute');
 // mount the routers
 
 app.use('/api/item', itemRouter);
+app.use('/api/pantry', pantryRouter);
 // 404 error handler
 
 app.use((req, res, next) => {
