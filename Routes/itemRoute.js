@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-const Item = require('../Models/foodItem');
+const Item = require('../models/foodItem');
 
 const router = express.Router();
 

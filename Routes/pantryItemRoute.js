@@ -3,7 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const pantryItem = require('../Models/pantryItem');
+const pantryItem = require('../models/pantryItem');
 
 const passport = require('passport');
 const router = express.Router();

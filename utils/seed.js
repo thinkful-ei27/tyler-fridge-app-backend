@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const { MONGODB_URI } = require('../config');
 
-const FoodItem = require('../Models/foodItem');
+const FoodItem = require('../models/foodItem');
 
 
 const { items } = require('../dummy/data');
