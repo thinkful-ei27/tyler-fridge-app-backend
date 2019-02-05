@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
   itemName:{type: String, required: true},
-  expirationDate:{type: Date, required: true}
+  expirationDate:{type: Date, required: true},
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 schema.set('timestamps', true);

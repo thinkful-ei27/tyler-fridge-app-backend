@@ -2,15 +2,21 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 const Item = require('../Models/foodItem');
 
 const router = express.Router();
 
+router.use('/', passport.authenticate('jwt', { session: false, failWithError: true }));
+
 // GET route
 router.get('/', (req, res, next) => {
+  const userId = req.user.id;
 
-  Item.find()
+  let filter = { userId };
+
+  Item.find(filter)
     .sort('expirationDate')
     .then(results => {
       res.json(results);
@@ -24,10 +30,11 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { itemName, expirationDate } = req.body;
- 
+  const userId = req.user.id;
+  
   new Date(expirationDate);
   
-  const newItem = { itemName, expirationDate};
+  const newItem = { itemName, expirationDate, userId};
   console.log(newItem);
   //  validation
   if (!itemName || !expirationDate) {

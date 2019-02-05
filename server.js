@@ -3,6 +3,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const {PORT, MONGODB_URI} = require('./config');
+const passport = require('passport');
+const localStrategy = require('./passport/local');
+const jwtStrategy = require('./passport/jwt');
 const cors = require('cors');
 const app = express();
 
@@ -14,10 +17,19 @@ app.use(express.json());
 // routers go here
 const itemRouter = require('./Routes/itemRoute');
 const pantryRouter = require('./Routes/pantryItemRoute');
+const usersRouter = require('./Routes/users');
+const authRouter = require('./Routes/auth')
+
+// passport strategy
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
 // mount the routers
 
 app.use('/api/item', itemRouter);
 app.use('/api/pantry', pantryRouter);
+app.use('/api/users', usersRouter);
+app.use('/api', authRouter );
 // 404 error handler
 
 app.use((req, res, next) => {
