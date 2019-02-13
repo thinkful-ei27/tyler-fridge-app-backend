@@ -32,10 +32,13 @@ app.use('/api/users', usersRouter);
 app.use('/api', authRouter );
 // 404 error handler
 
-app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use((err, req, res, next) => {
+  if (err.status) {
+    const errBody = Object.assign({}, err, { message: err.message });
+    res.status(err.status).json(errBody);
+  } else {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
 
 // error handler
@@ -68,4 +71,5 @@ if (require.main === module) {
     console.error(err);
   });
 }
-  
+
+module.exports = app;
