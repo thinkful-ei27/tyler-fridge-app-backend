@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const  MONGODB_URI  = 'mongodb + srv://Tcrabb:thedarktower19@cluster0.hhxta.mongodb.net/fridge?retryWrites=true&w=majority';
+// const MONGODB_URI =
 
 const FoodItem = require('../models/foodItem');
 
